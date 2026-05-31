@@ -1,0 +1,161 @@
+/* Aurora Background Premium Effects - AMOLED Mode Only */
+
+/* Note: Glass shadow effects are now in glassmorphism.css */
+
+/* Ambient light bloom animation */
+@keyframes ambientBloom {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 40px rgba(139, 92, 246, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 0 50px rgba(139, 92, 246, 0.15);
+  }
+}
+
+.dark .glass:hover,
+.amoled .glass:hover {
+  animation: ambientBloom 3s ease-in-out infinite;
+}
+
+/* Pulsing energy effect for interactive elements */
+@keyframes energyPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 10px rgba(59, 130, 246, 0.3),
+      0 0 20px rgba(139, 92, 246, 0.2),
+      0 0 30px rgba(236, 72, 153, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 15px rgba(59, 130, 246, 0.5),
+      0 0 30px rgba(139, 92, 246, 0.3),
+      0 0 45px rgba(236, 72, 153, 0.2);
+  }
+}
+
+/* Apply to buttons and interactive cards - AMOLED only */
+.amoled button.glass {
+  transition: all 0.3s ease;
+}
+
+.amoled button.glass:active {
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.6),
+    0 0 40px rgba(139, 92, 246, 0.4),
+    0 0 60px rgba(236, 72, 153, 0.3),
+    inset 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Shimmer overlay for premium feel - AMOLED only */
+@keyframes auroraSweep {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(200%) translateY(200%) rotate(45deg);
+  }
+}
+
+.amoled .glass::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 192, 246, 0.08) 50%,
+    transparent
+  );
+  animation: auroraSweep 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Edge glow for depth - AMOLED only */
+.amoled .glass {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pulsing border glow - AMOLED only */
+@keyframes borderPulse {
+  0%, 100% {
+    border-color: rgba(139, 192, 246, 0.2);
+  }
+  50% {
+    border-color: rgba(139, 192, 246, 0.4);
+  }
+}
+
+.amoled .glass-strong {
+  animation: borderPulse 4s ease-in-out infinite;
+}
+
+/* Radial energy ripple on focus - AMOLED only */
+@keyframes energyRipple {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(59, 130, 246, 0.4),
+      0 0 0 0 rgba(139, 92, 246, 0.3),
+      0 0 0 0 rgba(236, 72, 153, 0.2);
+  }
+  100% {
+    box-shadow:
+      0 0 0 20px rgba(59, 130, 246, 0),
+      0 0 0 40px rgba(139, 92, 246, 0),
+      0 0 0 60px rgba(236, 72, 153, 0);
+  }
+}
+
+.amoled input:focus,
+.amoled textarea:focus {
+  animation: energyRipple 1s ease-out;
+}
+
+/* Text glow for better readability against aurora - AMOLED only */
+.amoled h1,
+.amoled h2,
+.amoled h3 {
+  text-shadow:
+    0 0 20px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Breathing light effect for the whole viewport */
+@keyframes ambientBreathing {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Performance optimizations - AMOLED only */
+.amoled .glass,
+.amoled .glass-strong {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility - AMOLED only */
+@media (prefers-reduced-motion: reduce) {
+  .amoled .glass::after,
+  .amoled .glass-strong {
+    animation: none !important;
+  }
+
+  .amoled input:focus,
+  .amoled textarea:focus {
+    animation: none !important;
+  }
+}
